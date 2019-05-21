@@ -1,3 +1,35 @@
 @import './carousel.css';
 
 // Your customize CSS
+
+.search {
+  margin-top: 30px;
+}
+
+#search {
+  display: flex;
+  flex-basis: baseline;
+}
+#search .btn{
+  width: 20%;
+}
+.recipe-cards {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.card {
+  min-width: 200px;
+  width: calc(33.3333% - 20px);
+  margin: 10px;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+
+.card img:hover {
+  opacity: .5;
+}
+
