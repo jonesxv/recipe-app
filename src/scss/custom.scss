@@ -32,15 +32,47 @@ label {
   text-indent:5px;
 }
 
-.search .btn{
+.search .btn-add{
   width: 18%;
 }
+
+
+
+
+
+.added-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.added-container p {
+  color: grey;
+}
+.added {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.added-ingredient {
+  border: solid 1px;
+  border-radius: 2px;
+  padding: 5px 10px 5px 10px;
+  margin: 5px;
+}
+
+
+.btn-search{
+  width: 30%;
+  margin-top: 20px;
+}
+
 .recipe-cards {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-evenly;
-
+  margin-top: 20px;
 }
 
 .card {

@@ -14,19 +14,42 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container">
         <a class="navbar-brand" href="#">Recipe Finder</a>
-        
-        
+        <ul id="navbar-nav" class="navbar-nav right hide-on-med-and-down">
+            <li class="nav-item logged-in">
+              <a href="#" class="nav-link grey-text modal-trigger" data-target="modal-account">Account</a>
+            </li>
+            <li class="nav-item logged-out">
+              <a href="#" class="nav-link grey-text modal-trigger" data-target="modal-login">Login</a>
+            </li>
+            <li class="nav-item logged-out">
+              <a href="#" class="nav-link grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+            </li>
+            <li class="nav-item logged-in">
+              <a href="#" class="nav-link grey-text" id="logout">Logout</a>
+            </li>
+        </ul>
+      </div>
       </nav>
     </header>
 
     <main role="main" class="container">
       <div class="search">
           <label for="search-box">What ingredients do you have? </label>
-          <input class="ingredients-field" id="search-box" type="text" placeholder="Enter all your ingredients..."></input>
-          <button type="submit" class="btn btn-secondary" data-toggle="modal" data-target="recipe-modal">Search</button>
+          <input class="ingredients-field" id="search-box" type="text" placeholder="Add ingredients..." required></input>
+          <button type="submit" class="btn btn-add btn-danger" data-toggle="modal" data-target="recipe-modal">+ Add</button>
       </div>
+      
+      <div class="added-container">
+          <p id="instruction">Click to remove ingredients</p>
+          <div class="added">
+            
+          </div>
+          <button type="submit" class="btn btn-search btn-secondary" data-toggle="modal" data-target="recipe-modal">Search</button>
+      </div>
+      
       <div class="recipe-cards">
 
       </div>
@@ -60,6 +83,77 @@
             </div>
           </div>
         </div>
+
+
+          <!-- SIGN UP MODAL -->
+
+          <div class="modal fade" id="modal-signup">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Sign Up</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form class="signup-form">
+                    <div class="form-group">
+                      <input class="form-control" type="email" id="signup-email" required />
+                      <label class="col-form-label" for="signup-email">Email address</label>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="password" id="signup-password" required />
+                      <label class="col-form-label" for="signup-password">Choose password</label>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary">Sign up</button>
+                </div>
+              </div>
+            </div>
+          <!-- </div>
+  <div id="modal-signup" class="modal">
+      <div class="modal-content">
+        <h4>Sign up</h4><br />
+        <form id="signup-form">
+          <div class="form-group">
+            <input type="email" id="signup-email" required />
+            <label for="signup-email">Email address</label>
+          </div>
+          <div class="input-field">
+            <input type="password" id="signup-password" required />
+            <label for="signup-password">Choose password</label>
+          </div>
+          <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+        </form>
+      </div>
+    </div> -->
+ <!-- LOGIN MODAL -->
+ <div id="modal-login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4><br />
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Your password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Login</button>
+      </form>
+    </div>
+  </div>
+  <!-- ACCOUNT MODAL -->
+  <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Account details</h4><br />
+      <div class="account-details"></div>
+    </div>
+  </div>
 
 
 

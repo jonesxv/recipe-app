@@ -17,6 +17,7 @@ const recipeData = require('../public/recipeData');
 console.log(apiKey);
 
 function createElement(key, val) {
+  console.log(val);
   if (key === 'image') {
     let img = $(`<img src=${val}>`);
     $('#modal-img').prepend(img);

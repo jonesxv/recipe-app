@@ -80,3 +80,31 @@ function searchIngredients(results = 10) {
 searchIngredients(numberOfResults);
 
 console.log(apiKey);
+
+$(document).ready(function() {
+  $('.modal-trigger').on('click', function() {
+    let target = $(event.target).attr('data-target');
+    $(`#${target}`).modal();
+  });
+
+  $('.btn-add').on('click', function() {
+    let input = $('.ingredients-field').val();
+    if (input.length > 0) {
+      $('<div>', {
+        class: 'added-ingredient',
+        text: input,
+        click: function() {
+          this.remove();
+        },
+      }).appendTo('.added');
+      $('.ingredients-field').val('');
+    }
+  });
+
+  $('.btn-search').on('click', function() {
+    $('.added-ingredient').each(function() {
+      ingredients.push(this.innerHTML);
+    });
+    console.log(ingredients);
+  });
+});
