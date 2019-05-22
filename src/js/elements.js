@@ -1,17 +1,51 @@
-// var $div = $("<div>", {id: "foo", "class": "a"});
-// $div.click(function(){ /* ... */ });
-// $("#box").append($div);
+const apiKey = require('../config/config');
+const recipeData = require('../public/recipeData');
 
-{
-  /* <div class="card">
-      <div class="view view-cascade overlay">
-        <img class="card-img-top" src="https://spoonacular.com/recipeImages/70306-312x231.jpg" alt="Card image cap">
-      </div>
-      <div class="card-body card-body-cascade text-center">
-        <h4 class="card-title"><strong>Easy Cinnamon Apple Pie</strong></h4>
-        <h5 class="blue-text pb-2">Ingredients Used: <strong>3</strong></h5>
-      </div> 
-          </div> */
+// function apiCall(endURL, method, cb) {
+//   $.ajax({
+//     url: endURL,
+//     headers: {
+//       'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+//       'X-RapidAPI-Key': apiKey,
+//     },
+//     method: method,
+//   }).then(res => {
+//     cb(res);
+//   });
+// }
+
+console.log(apiKey);
+
+function createElement(key, val) {
+  if (key === 'image') {
+    let img = $(`<img src=${val}>`);
+    $('#modal-img').prepend(img);
+  } else if (key === 'Ratings') {
+    val.forEach(rating => {
+      // console.log(rating)
+      let el = $(
+        `<p><strong>${rating.Source}: </strong><span class="output">${
+          rating.Value
+        }</span></p>`
+      );
+      $('#modal-rating').append(el);
+    });
+  } else if (key === 'title') {
+    $('#recipe-title').text(val);
+  } else {
+    let el = $(
+      `<p><strong>${key}: </strong><span class="output">${val}</span></p>`
+    );
+    $('#output').append(el);
+  }
+}
+
+function showRecipe(response) {
+  $('#output img').remove();
+  $('#modal-rating').empty();
+  for (let key in response) {
+    createElement(key, response[key]);
+  }
 }
 
 function createCard(obj) {
@@ -28,8 +62,22 @@ function createCard(obj) {
   $card.append($cardBody);
 
   $title.text(obj.title);
-  $card.click(function() {
-    console.log(event.currentTarget.getAttribute('key'));
+  $card.click(function(event) {
+    const recipeInfoURL = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${event.currentTarget.getAttribute(
+      'key'
+    )}/information`;
+    console.log(recipeInfoURL);
+
+    // Uncomment to make API calls
+    // apiCall(recipeInfoURL, 'GET', function(response) {
+    //   console.log(response);
+    // });
+
+    // Uncomment to get data from file instead
+    console.log(recipeData);
+
+    showRecipe(recipeData);
+    $('#recipe-modal').modal();
   });
 
   $('.recipe-cards').append($card);

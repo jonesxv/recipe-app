@@ -3,26 +3,50 @@
 // Your customize CSS
 
 .search {
-  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 35px;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: space-between;
 }
 
-#search {
-  display: flex;
-  flex-basis: baseline;
+label {
+  width: 100%;
+  display:block;
+  margin-bottom:5px;
+  font-size: 25px;
 }
-#search .btn{
-  width: 20%;
+
+.ingredients-field {
+  width: 80%;
+  padding: 10px;
+  border:none;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+  -webkit-box-shadow:0 0 5px #666 inset;
+  -moz-box-shadow:0 0 5px #666 inset;
+  box-shadow:0 0 5px #666 inset;
+  line-height:25px;
+  text-indent:5px;
+}
+
+.search .btn{
+  width: 18%;
 }
 .recipe-cards {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  justify-content: space-evenly;
+
 }
 
 .card {
   min-width: 200px;
-  width: calc(33.3333% - 20px);
-  margin: 10px;
+  width: 23%;
+  margin: 5px;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -33,3 +57,9 @@
   opacity: .5;
 }
 
+#recipe-modal {
+  width: 100%;
+}
+#modal-img {
+  max-width: 400px;
+}

@@ -4,10 +4,6 @@ const createCard = require('./elements');
 const recipes = require('../public/recipes.js');
 const apiKey = require('../config/config');
 
-$('#alert').click(() => {
-  alert('jQuery works!');
-});
-
 const numberOfResults = 20;
 const ingredients = ['blue cheese', 'sugar', 'flour'];
 const ingredientsSearch = addIngredients(ingredients);
@@ -23,6 +19,12 @@ function addIngredients(arr) {
   });
   return str;
 }
+
+// function formatSearchURL(num, ingredientsArray) {
+//   const ingredients = addIngredients(ingredientsArray);
+//   return `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=${num}&ranking=1&ignorePantry=false&ingredients=${ingredients}`;
+// }
+
 console.log(ingredientsSearch);
 
 function searchIngredients(results = 10) {
@@ -38,16 +40,16 @@ function searchIngredients(results = 10) {
 
   // Uncomment to make API Calls
 
-  // apiCall('GET', results, ingredients, function(response) {
-  //   $('#recipe-table tr:not(".header")').remove()
-  //   response.forEach(recipe => {
-  //     createCard(recipe);
-  //   })
+  // apiCall(formatSearchURL(numberOfResults,ingredients),'GET', function(response) {
+  //   console.log(response)
+  // $('#recipe-table tr:not(".header")').remove()
+  // response.forEach(recipe => {
+  //   createCard(recipe);
+  // })
   // });
 
   // Uncomment to get data from JS file
 
-  $('#recipe-table tr:not(".header")').remove();
   recipes.forEach(recipe => {
     createCard(recipe);
   });
@@ -55,10 +57,10 @@ function searchIngredients(results = 10) {
   console.log(recipes, results);
 }
 
-// function apiCall(method, results = 10, ingredients, cb) {
+// function apiCall(endURL, method, cb) {
 //   if (ingredients) {
 //     $.ajax({
-//       url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=${results}&ranking=1&ignorePantry=false&ingredients=${ingredients}`,
+//       url: endURL,
 //       headers: {
 //         'X-RapidAPI-Host':
 //           'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
