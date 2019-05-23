@@ -1,7 +1,21 @@
-@import './carousel.css';
+
 
 // Your customize CSS
+.navbar {
+  background-color: #ff5858;
+  color: white;
+}
+.app {
+  display: none;
+}
 
+.logged-in {
+  display: none;
+}
+
+.pre-login {
+  margin: 40px;
+}
 .search {
   display: flex;
   flex-wrap: wrap;
@@ -85,6 +99,51 @@ label {
 
 }
 
+.container-recipe {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.container-recipe img {
+  width: 100%;
+}
+
+#modal-rating {
+  width: 50%;
+}
+
+#modal-tags {
+  display: flex;
+  width: 15%;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.tags {
+  background-color: #ff5858;
+  padding: 5px;
+  margin: 2px;
+  border-radius: 5px;
+  color: white;
+}
+
+#modal-ing {
+  width: 30%;
+}
+
+.output {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.output p {
+  width: 50%;
+}
 .card img:hover {
   opacity: .5;
 }
@@ -93,5 +152,5 @@ label {
   width: 100%;
 }
 #modal-img {
-  max-width: 400px;
+  width: 50%;
 }

@@ -8,13 +8,12 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-
     <title>Recipe Search</title>
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="container">
         <a class="navbar-brand" href="#">Recipe Finder</a>
         <ul id="navbar-nav" class="navbar-nav right hide-on-med-and-down">
@@ -36,6 +35,8 @@
     </header>
 
     <main role="main" class="container">
+      <h1 class="pre-login text-center">Login to search recipes</h1>
+      <div class="app">
       <div class="search">
           <label for="search-box">What ingredients do you have? </label>
           <input class="ingredients-field" id="search-box" type="text" placeholder="Add ingredients..." required></input>
@@ -68,12 +69,16 @@
                 </button>
               </div>
   
-              <div class="modal-body" id="output">
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-2" id="modal-img"></div>
-                    <div class="col-2" id="modal-rating"></div>
-                  </div>
+              <div class="modal-body">
+                <div class="container-recipe">
+                    <div id="modal-img"></div>
+                    <div id="modal-tags"></div>
+                    <div id="modal-ing"><ul class="list-group" id="ing-list"><li class="list-group-item"><strong>Ingredients</strong></li></ul></div>
+                    <div id="modal-rating"></div>
+                </div>
+                <div id="modal-instructions"></div>
+                <div id="output">
+
                 </div>
   
               </div>
@@ -83,11 +88,38 @@
             </div>
           </div>
         </div>
+      </div>
+          <!-- LOGIN MODAL -->
 
+        <div class="modal fade" id="modal-login" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Login</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="login-form" class="login-form">
+                    <div class="form-group">
+                      <input class="form-control" type="email" id="login-email" autocomplete="username" required />
+                      <label class="col-form-label" for="login-email">Email address</label>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="password" id="login-password" autocomplete="current-password" required />
+                      <label class="col-form-label" for="login-password">Password</label>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Login</button>
+                  </form>
+              </div>
+            </div>
+          </div>
+        </div> 
 
           <!-- SIGN UP MODAL -->
 
-          <div class="modal fade" id="modal-signup">
+          <div class="modal fade" id="modal-signup" tabindex="-1" z-index="1" role="dialog">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -97,56 +129,23 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form class="signup-form">
+                  <form id="signup-form" class="signup-form">
                     <div class="form-group">
-                      <input class="form-control" type="email" id="signup-email" required />
+                      <input class="form-control" type="email" id="signup-email" autocomplete="username" required />
                       <label class="col-form-label" for="signup-email">Email address</label>
                     </div>
                     <div class="form-group">
-                      <input class="form-control" type="password" id="signup-password" required />
+                      <input class="form-control" type="password" id="signup-password" autocomplete="current-password" required />
                       <label class="col-form-label" for="signup-password">Choose password</label>
                     </div>
+                    <button type="submit" class="btn btn-secondary">Sign up</button>
                   </form>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-secondary">Sign up</button>
-                </div>
               </div>
             </div>
-          <!-- </div>
-  <div id="modal-signup" class="modal">
-      <div class="modal-content">
-        <h4>Sign up</h4><br />
-        <form id="signup-form">
-          <div class="form-group">
-            <input type="email" id="signup-email" required />
-            <label for="signup-email">Email address</label>
           </div>
-          <div class="input-field">
-            <input type="password" id="signup-password" required />
-            <label for="signup-password">Choose password</label>
-          </div>
-          <button class="btn yellow darken-2 z-depth-0">Sign up</button>
-        </form>
-      </div>
-    </div> -->
- <!-- LOGIN MODAL -->
- <div id="modal-login" class="modal">
-    <div class="modal-content">
-      <h4>Login</h4><br />
-      <form id="login-form">
-        <div class="input-field">
-          <input type="email" id="login-email" required />
-          <label for="login-email">Email address</label>
         </div>
-        <div class="input-field">
-          <input type="password" id="login-password" required />
-          <label for="login-password">Your password</label>
-        </div>
-        <button class="btn yellow darken-2 z-depth-0">Login</button>
-      </form>
-    </div>
-  </div>
+
+
   <!-- ACCOUNT MODAL -->
   <div id="modal-account" class="modal">
     <div class="modal-content center-align">
@@ -158,7 +157,7 @@
 
 
       <!-- FOOTER -->
-      <footer class="container">
+      <footer class="container app">
         <p class="float-right"><a href="#">Back to top</a></p>
         <p>
           &copy; 2019 Ryan Jones &middot;
