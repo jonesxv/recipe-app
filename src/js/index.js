@@ -12,6 +12,7 @@ let ingredients = [];
 const ingredientsSearch = addIngredients(ingredients);
 
 // Database configuration
+let currentUser = '';
 
 var firebaseConfig = {
   apiKey: keys.dbKey,
@@ -25,25 +26,44 @@ firebase.initializeApp(firebaseConfig);
 
 // Auth and Firestore references
 const auth = firebase.auth();
-// const db = firebase.firestore();
+const db = firebase.firestore();
 
 // Firebase Auth listener
 
 auth.onAuthStateChanged(user => {
   if (user) {
-    console.log('logged in');
     $('.app').css('display', 'block');
     $('.logged-in').css('display', 'block');
     $('.logged-out').css('display', 'none');
     $('.pre-login').css('display', 'none');
+    currentUser = user.uid;
   } else if (user === null) {
-    console.log('logged out');
+    currentUser = '';
     $('.app').css('display', 'none');
     $('.logged-in').css('display', 'none');
     $('.logged-out').css('display', 'block');
     $('.pre-login').css('display', 'block');
   }
 });
+
+// Add user to DB
+
+function addUser(uid, email) {
+  db.collection('users')
+    .doc(uid)
+    .set({
+      email: email,
+      recipes: [],
+    });
+}
+
+function addRecipe(uid, recipe) {
+  db.collection('users')
+    .doc(uid)
+    .update({
+      recipes: firebase.firestore.FieldValue.arrayUnion(recipe),
+    });
+}
 
 function addIngredients(arr) {
   let str = '';
@@ -65,16 +85,6 @@ function formatSearchURL(num, ingredientsArray) {
 console.log(ingredientsSearch);
 
 function searchIngredients(results = 10) {
-  // $.get(`http://www.omdbapi.com/?apikey=${omdb_key}&s=${title}&page=${page}`, function(response) {
-  //   // console.log(response)
-
-  //   $('.title-click').on('click', function() {
-
-  //     showTitle(event.target.text)
-  //     $('#movie-modal').modal();
-  //   })
-  // })
-
   // Uncomment to make API Calls
 
   apiCall(formatSearchURL(numberOfResults, ingredients), 'GET', function(
@@ -83,7 +93,7 @@ function searchIngredients(results = 10) {
     console.log(response);
     $('#recipe-table tr:not(".header")').remove();
     response.forEach(recipe => {
-      createCard(recipe);
+      createCard(recipe, currentUser, addRecipe);
     });
   });
 
@@ -121,8 +131,6 @@ function apiCall(endURL, method, cb) {
 $(document).ready(function() {
   $('.modal-trigger').on('click', function() {
     let target = $(event.target).attr('data-target');
-    // $(`#${target}`).modal();
-    console.log(target);
     $(`#${target}`).css('display', 'block');
     $(`#${target}`).modal();
   });
@@ -146,10 +154,23 @@ $(document).ready(function() {
     $('.added-ingredient').each(function() {
       ingredients.push(this.innerHTML);
     });
-    console.log(ingredients);
     $('.recipe-cards').empty();
     searchIngredients(numberOfResults);
-    console.log(ingredients);
+  });
+
+  $('.btn-my-recipes').on('click', function() {
+    $('.recipe-cards').empty();
+    const recipesRef = db.collection('users').doc(currentUser);
+    recipesRef.get().then(function(doc) {
+      if (doc.exists) {
+        let recipes = doc.data().recipes;
+        for (let i = 0; i < recipes.length; i++) {
+          createCard(recipes[i]);
+        }
+      } else {
+        console.log('No document found');
+      }
+    });
   });
 
   // Sign up modal
@@ -159,11 +180,22 @@ $(document).ready(function() {
     // user info
     const email = this['signup-email'].value;
     const password = this['signup-password'].value;
-    auth.createUserWithEmailAndPassword(email, password).then(() => {
-      $('#signup-email').val('');
-      $('#signup-password').val('');
-      $('#modal-signup').modal('hide');
-    });
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(cred => {
+        let uid = cred.user.uid;
+        let email = cred.user.email;
+        addUser(uid, email);
+      })
+      .then(() => {
+        console.log(`${email} successfully added to firestore`);
+        $('#signup-email').val('');
+        $('#signup-password').val('');
+        $('#modal-signup').modal('hide');
+      })
+      .catch(error => {
+        console.error('Error writing document: ', error);
+      });
   });
 
   // Login modal
@@ -186,3 +218,8 @@ $(document).ready(function() {
     auth.signOut();
   });
 });
+
+module.exports = {
+  db: db,
+  auth: auth,
+};

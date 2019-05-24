@@ -1,5 +1,5 @@
 const keys = require('../config/config');
-const recipeData = require('../public/recipeData');
+// const recipeData = require('../public/recipeData');
 
 function apiCall(endURL, method, cb) {
   $.ajax({
@@ -13,7 +13,7 @@ function apiCall(endURL, method, cb) {
     cb(res);
   });
 }
-console.log(recipeData);
+// console.log(recipeData);
 
 function createElement(key, val) {
   console.log(key);
@@ -70,21 +70,35 @@ function showRecipe(response) {
   }
 }
 
-function createCard(obj) {
+function createCard(obj, user, addRecipeCB) {
   const $title = $('<h4>', { class: 'card-title' });
   const $image = $('<img>', { class: 'card-img-top', src: obj.image });
+  const $save = $('<div>', {
+    class: 'btn save',
+    key: obj.id,
+    text: 'save',
+    click: function() {
+      console.log(user);
+      addRecipeCB(user, obj);
+    },
+  });
+  $save.text('save');
   const $cardBody = $('<div>', {
     class: 'card-body card-body-cascade text-center',
   });
   const $cardHead = $('<div>', { class: 'view view-cascade overlay' });
+  const $cardItem = $('<div>', { class: 'card-item', key: obj.id });
   const $card = $('<div>', { class: 'card', key: obj.id });
   $cardHead.append($image);
+
   $cardBody.append($title);
-  $card.append($cardHead);
-  $card.append($cardBody);
+  $cardItem.append($cardHead);
+  $cardItem.append($cardBody);
+  $card.append($cardItem);
+  $card.append($save);
 
   $title.text(obj.title);
-  $card.click(function(event) {
+  $cardItem.click(function(event) {
     const recipeInfoURL = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${event.currentTarget.getAttribute(
       'key'
     )}/information`;

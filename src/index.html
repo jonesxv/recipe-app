@@ -17,9 +17,6 @@
         <div class="container">
         <a class="navbar-brand" href="#">Recipe Finder</a>
         <ul id="navbar-nav" class="navbar-nav right hide-on-med-and-down">
-            <li class="nav-item logged-in">
-              <a href="#" class="nav-link grey-text modal-trigger" data-target="modal-account">Account</a>
-            </li>
             <li class="nav-item logged-out">
               <a href="#" class="nav-link grey-text modal-trigger" data-target="modal-login">Login</a>
             </li>
@@ -49,12 +46,12 @@
             
           </div>
           <button type="submit" class="btn btn-search btn-secondary" data-toggle="modal" data-target="recipe-modal">Search</button>
+          <button type="submit" class="btn btn-my-recipes btn-primary" data-toggle="modal" data-target="my-recipes-modal">Show My Recipes</button>
       </div>
       
       <div class="recipe-cards">
 
       </div>
-
 
 
 
@@ -89,6 +86,8 @@
           </div>
         </div>
       </div>
+
+
           <!-- LOGIN MODAL -->
 
         <div class="modal fade" id="modal-login" role="dialog">
@@ -144,15 +143,6 @@
             </div>
           </div>
         </div>
-
-
-  <!-- ACCOUNT MODAL -->
-  <div id="modal-account" class="modal">
-    <div class="modal-content center-align">
-      <h4>Account details</h4><br />
-      <div class="account-details"></div>
-    </div>
-  </div>
 
 
 
