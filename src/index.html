@@ -8,6 +8,9 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <script src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" data-auto-replace-svg="nest"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Rock+Salt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Reenie+Beanie&display=swap" rel="stylesheet">
     <title>Recipe Search</title>
   </head>
 
@@ -15,7 +18,7 @@
     <header>
       <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="container">
-        <a class="navbar-brand" href="#">Recipe Finder</a>
+        <a class="navbar-brand" href="#">RECIPE VAULT</a>
         <ul id="navbar-nav" class="navbar-nav right hide-on-med-and-down">
             <li class="nav-item logged-out">
               <a href="#" class="nav-link grey-text modal-trigger" data-target="modal-login">Login</a>
@@ -30,15 +33,20 @@
       </div>
       </nav>
     </header>
-
+    <div class="pre-login">
+        <div><h1 class="text-center">Welcome to Recipe Vault</h1></div>
+        <div><h3 class="text-center">Login to search recipes</h3></div>
+    </div>
     <main role="main" class="container">
-      <h1 class="pre-login text-center">Login to search recipes</h1>
+        
       <div class="app">
+        <form>
       <div class="search">
-          <label for="search-box">What ingredients do you have? </label>
-          <input class="ingredients-field" id="search-box" type="text" placeholder="Add ingredients..." required></input>
+          <label for="search-box">Enter ingredients and search for recipes</label>
+          <input class="ingredients-field" id="search-box" type="text" placeholder="What ingredients do you have?"></input>
           <button type="submit" class="btn btn-add btn-danger" data-toggle="modal" data-target="recipe-modal">+ Add</button>
       </div>
+    </form>
       
       <div class="added-container">
           <p id="instruction">Click to remove ingredients</p>
@@ -52,7 +60,6 @@
       <div class="recipe-cards">
 
       </div>
-
 
 
       <div class="modal fade" id="recipe-modal" tabindex="-1" role="dialog">
@@ -146,14 +153,16 @@
 
 
 
-      <!-- FOOTER -->
-      <footer class="container app">
+      
+    </main>
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
         <p class="float-right"><a href="#">Back to top</a></p>
         <p>
-          &copy; 2019 Ryan Jones &middot;
-          <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+          &copy; 2019 Ryan Jones
         </p>
-      </footer>
-    </main>
+      </div>
+    </footer>
   </body>
 </html>

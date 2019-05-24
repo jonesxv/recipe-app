@@ -136,6 +136,7 @@ $(document).ready(function() {
   });
 
   $('.btn-add').on('click', function() {
+    event.preventDefault();
     let input = $('.ingredients-field').val();
     if (input.length > 0) {
       $('<div>', {
@@ -147,6 +148,7 @@ $(document).ready(function() {
       }).appendTo('.added');
       $('.ingredients-field').val('');
     }
+    $('.ingredients-field').focus();
   });
 
   $('.btn-search').on('click', function() {

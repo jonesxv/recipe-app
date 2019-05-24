@@ -1,18 +1,47 @@
+$color-main: rgb(145, 54, 54);
+$color-secondary: rgb(119, 35, 35);
 
+html, body {
+  font-family: 'Raleway', sans-serif;
+  background-color: rgb(238, 237, 237);
+}
 
 // Your customize CSS
 .navbar {
-  background-color: #ff5858;
+  background-color: $color-main;
   color: white;
 }
-.app {
-  display: none;
+
+.pre-login {
+  padding-top: 100px;
+}
+.pre-login h1 {
+  font-family: 'Reenie Beanie', cursive;
+  // font-family: 'Rock Salt', cursive;
+  font-size: 90px;
+  // text-shadow: 3px 3px 4px rgba(150, 150, 150, 1);
+  text-shadow: -3px -3px 5px rgba(150, 150, 150, 0.59);
+}
+
+.pre-login h3 {
+  padding: 15px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 30px;
+  
 }
 
 .logged-in {
   display: none;
 }
 
+.navbar-brand {
+  font-size: 30px;
+  font-family: 'Reenie Beanie', cursive;
+}
+
+.navbar li {
+  font-size: 20px;
+}
 .pre-login {
   margin: 40px;
 }
@@ -94,6 +123,7 @@ label {
   width: 100%;
   justify-content: space-evenly;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .card {
@@ -113,7 +143,7 @@ label {
 .save {
   height: 10%;
   border-radius: 0;
-  background: lightblue;
+  background: $color-main;
 }
 
 .save:hover {
@@ -146,7 +176,7 @@ label {
 }
 
 .tags {
-  background-color: #ff5858;
+  background-color: $color-secondary;
   padding: 5px;
   margin: 2px;
   border-radius: 5px;
@@ -176,4 +206,17 @@ label {
 }
 #modal-img {
   width: 50%;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  background-color: $color-secondary;
+  color: white;
+  width: 100%;
+  padding-top: 10px;
+}
+
+footer a {
+  color: black;
 }
