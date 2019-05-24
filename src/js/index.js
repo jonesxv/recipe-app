@@ -93,7 +93,7 @@ function searchIngredients(results = 10) {
     console.log(response);
     $('#recipe-table tr:not(".header")').remove();
     response.forEach(recipe => {
-      createCard(recipe, currentUser, addRecipe);
+      createCard('api', recipe, currentUser, addRecipe);
     });
   });
 
@@ -139,7 +139,7 @@ $(document).ready(function() {
     let input = $('.ingredients-field').val();
     if (input.length > 0) {
       $('<div>', {
-        class: 'added-ingredient',
+        class: 'added-ingredient btn',
         text: input,
         click: function() {
           this.remove();
@@ -165,7 +165,7 @@ $(document).ready(function() {
       if (doc.exists) {
         let recipes = doc.data().recipes;
         for (let i = 0; i < recipes.length; i++) {
-          createCard(recipes[i]);
+          createCard('db', recipes[i]);
         }
       } else {
         console.log('No document found');

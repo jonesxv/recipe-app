@@ -70,19 +70,10 @@ function showRecipe(response) {
   }
 }
 
-function createCard(obj, user, addRecipeCB) {
+function createCard(type, obj, user, addRecipeCB) {
   const $title = $('<h4>', { class: 'card-title' });
   const $image = $('<img>', { class: 'card-img-top', src: obj.image });
-  const $save = $('<div>', {
-    class: 'btn save',
-    key: obj.id,
-    text: 'save',
-    click: function() {
-      console.log(user);
-      addRecipeCB(user, obj);
-    },
-  });
-  $save.text('save');
+
   const $cardBody = $('<div>', {
     class: 'card-body card-body-cascade text-center',
   });
@@ -95,7 +86,20 @@ function createCard(obj, user, addRecipeCB) {
   $cardItem.append($cardHead);
   $cardItem.append($cardBody);
   $card.append($cardItem);
-  $card.append($save);
+
+  if (type === 'api') {
+    const $save = $('<div>', {
+      class: 'btn save',
+      key: obj.id,
+      text: 'save',
+      click: function() {
+        console.log(user);
+        addRecipeCB(user, obj);
+      },
+    });
+    $save.text('save');
+    $card.append($save);
+  }
 
   $title.text(obj.title);
   $cardItem.click(function(event) {
